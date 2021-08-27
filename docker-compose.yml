@@ -1,21 +1,27 @@
 version: "3.5"
-
+networks:
+    app-tier:
+        driver: bridge
 services:
-  redis-server:
-    image: "redis"
-  service-1:
-    build: ./service-1
-    ports:
-      - 2000:3000
-    depends_on:
-      - service-2
-    volumes:
-      - my_vol:/var/service-1
-  service-2:
-    build: ./service-2
-    ports:
-      - 2002:4000
-    volumes:
-      - my_vol:/var/service-2
-volumes:
-  my_vol:
+    redis-server:
+        image: "redis"
+        networks:
+            - app-tier
+    service-1:
+        build: ./service-1
+        ports:
+            - 2000:3000
+        depends_on:
+            - service-2
+        volumes:
+            - ./service-1:/usr/app/
+        networks:
+            - app-tier
+    service-2:
+        build: ./service-2
+        ports:
+            - 2002:4000
+        volumes:
+            - ./service-2:/usr/app/
+        networks:
+            - app-tier

@@ -1,8 +1,8 @@
 FROM node:14-alpine
 
-WORKDIR /usr/services-test
+WORKDIR /usr/service1
 
-COPY package*.json .
+COPY package*.json ./
 
 RUN npm install
 

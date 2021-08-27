@@ -13,7 +13,7 @@ const client = redis.createClient({
 
 let data;
 var options = {
-  uri: "http://service-2:2002/data",
+  url: "http://service-2:4000/data",
   json: true,
   method: "GET",
 };
