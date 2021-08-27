@@ -6,10 +6,10 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// const client = redis.createClient({
-//   host: "redis-server",
-//   port: 6379,
-// });
+const client = redis.createClient({
+  host: "redis-server",
+  port: 6379,
+});
 
 let data;
 var options = {
@@ -27,16 +27,16 @@ rp(options)
   });
 
 app.get("/", (_, res, _2) => {
-  res.status(200).json({
-    data,
-  });
-  // client.get("visits", (err, visits) => {
-  //   res.status(200).json({
-  //     Number_of_visits: visits,
-  //     data,
-  //   });
-  //   client.set("visits", +visits + 1);
+  // res.status(200).json({
+  //   data,
   // });
+  client.get("visits", (err, visits) => {
+    res.status(200).json({
+      Number_of_visits: visits,
+      data,
+    });
+    client.set("visits", +visits + 1);
+  });
 });
 
 app.listen(PORT, () => {
