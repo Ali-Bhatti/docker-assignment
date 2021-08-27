@@ -1,0 +1,21 @@
+version: "3.5"
+
+services:
+  redis-server:
+    image: "redis"
+  service-1:
+    build: ./service-1
+    ports:
+      - 2000:3000
+    depends_on:
+      - service-2
+    volumes:
+      - my_vol:/var/service-1
+  service-2:
+    build: ./service-2
+    ports:
+      - 2002:4000
+    volumes:
+      - my_vol:/var/service-2
+volumes:
+  my_vol:

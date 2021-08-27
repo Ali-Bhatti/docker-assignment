@@ -1,0 +1,23 @@
+{
+  "name": "docker-exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "service-1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node service-1",
+    "dev": "nodemon service-1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "redis": "^3.1.2",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
